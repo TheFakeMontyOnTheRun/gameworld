@@ -38,6 +38,80 @@ public class Location implements Updatable {
 	private String floorId;
 	public String ambientSound;
 
+	public String getJSONState() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append( "'" );
+		sb.append( name );
+		sb.append( "': {" );
+		
+		
+		if ( items.size() > 0 ) {
+			
+			sb.append( "'items': [ ");
+			
+			for ( Item i : items ) {
+				
+				sb.append( i.getJSONState() );
+			}
+			sb.append( "]," );
+		}
+		
+		
+		sb.append( "'connections': [" );
+
+		for ( Direction d : Direction.values() ) {
+			
+			if ( connections[ d.ordinal() ] != null ) {
+				
+			
+				sb.append( "'" );
+				sb.append( d.simpleName );
+				sb.append( "':{" );
+				sb.append( door[ d.ordinal() ].getJSONState() );
+				sb.append( ", 'link':'" );
+				sb.append( connections[ d.ordinal() ].getName() );
+				sb.append( "'}," );
+			}
+		}
+		
+		sb.append( "]," );
+		
+		if ( characters.size() > 0 ) {
+			sb.append( "'characters': [" );
+			for ( CharacterActor ca : characters ) {
+				sb.append( ca.getJSONState() );
+				sb.append( "," );
+			}
+			sb.append( "]," );
+		}
+		
+		
+		sb.append( "'description': '" );
+		sb.append( description );
+		sb.append( "'," );
+		
+		sb.append( "'lightning': '" );
+		sb.append( lightning );
+		sb.append( "'," );
+		
+		sb.append( "'hasBeenExplored': '" );
+		sb.append( hasBeenExplored );
+		sb.append( "'," );
+		
+		sb.append( "'floorId': '" );
+		sb.append( floorId );
+		sb.append( "'," );
+		
+		sb.append( "'ambientSound': '" );
+		sb.append( ambientSound );
+		sb.append( "'" );
+		
+		sb.append( "}" );
+		return sb.toString();
+	}
+	
+	
 	@Override
 	public void update(long milisseconds) {
 

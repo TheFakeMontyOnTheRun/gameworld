@@ -14,6 +14,24 @@ public class CharacterActor extends Actor implements Updatable {
 	Kind kind;
 	protected Location location;
 
+	public String getJSONState() {
+		String toReturn = "'" + name + "': {";
+		
+		if ( items.size() > 0 ) {
+			
+			toReturn += "'items': [ ";
+			
+			for ( Item i : items.values() ) {
+				toReturn += i + ",";
+			}
+			toReturn += " ] ";
+		}
+		
+		toReturn += kind.getJSONState();
+		toReturn += "}";
+		return toReturn;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -170,4 +188,5 @@ public class CharacterActor extends Actor implements Updatable {
 	public boolean hasItem(String name) {
 		return items.containsKey(name);
 	}
+
 }

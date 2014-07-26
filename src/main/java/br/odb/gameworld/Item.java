@@ -15,6 +15,34 @@ public class Item implements Updatable {
 	public Location location;
 	protected CharacterActor carrier;
 
+	public String getJSONState() {
+		
+		StringBuilder sb = new StringBuilder("");
+		sb.append( "'" );
+		sb.append( name );
+		sb.append( "': {" );
+		
+		sb.append( "'description':'" );
+		sb.append( description );
+		sb.append( "'" );
+		
+		sb.append( "'name':'" );
+		sb.append( name );
+		sb.append( "'" );
+		
+		sb.append( "'weight':'" );
+		sb.append( weight );
+		sb.append( "'" );
+		
+		sb.append( "'depleted':'" );
+		sb.append( depleted );
+		sb.append( "'" );
+		
+		sb.append( "}" );
+		
+		return sb.toString();
+	}
+	
 	public Item(String name) {
 		this.name = name;
 		pickable = true;
@@ -97,4 +125,5 @@ public class Item implements Updatable {
 	public void update(long milisseconds) {
 
 	}
+
 }

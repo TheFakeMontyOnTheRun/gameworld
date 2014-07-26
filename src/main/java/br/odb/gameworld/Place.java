@@ -23,6 +23,21 @@ public class Place extends Level implements Updatable {
 
 	}
 
+	public String getJSONState() {
+		
+		String toReturn = "{";
+		
+		toReturn += "'locations':[";
+		
+		for ( Location l : locations.values() ) {
+			toReturn += l.getJSONState() + ",";
+		}
+		
+		toReturn += "]}";
+		
+		return toReturn;
+	}
+	
 	public Location[] getLocations() {
 
 		return this.locations.values().toArray(
