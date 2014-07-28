@@ -16,6 +16,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import br.odb.gameworld.exceptions.InvalidLocationException;
+import br.odb.utils.Direction;
 
 /**
  * @author monty
