@@ -92,7 +92,7 @@ public class Item implements Updatable {
 		return name;
 	}
 
-	public void use(CharacterActor user) {
+	public void use(CharacterActor user) throws ItemActionNotSupportedException {
 
 	}
 

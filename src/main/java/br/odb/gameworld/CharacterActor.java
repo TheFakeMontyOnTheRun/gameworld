@@ -173,9 +173,10 @@ public class CharacterActor extends Actor implements Updatable {
 		return (ActiveItem) item; 
 	}
 
-	public Item useItem(String entry) throws ItemNotFoundException {
+	public Item useItem(String entry) throws ItemNotFoundException, ItemActionNotSupportedException {
 
 		Item item = getItem(entry);
+		
 		item.use(this);
 
 		if (item.isDepleted()) {
