@@ -4,6 +4,6 @@ public class MapCell {
 
 	public int kind;
 	Location belongsTo;
-	public Actor occupant;
+	public CharacterActor occupant;
 	public boolean block;
 }

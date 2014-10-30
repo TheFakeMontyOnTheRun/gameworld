@@ -7,13 +7,18 @@ import br.odb.gameworld.exceptions.ItemActionNotSupportedException;
 import br.odb.gameworld.exceptions.ItemNotFoundException;
 import br.odb.utils.Updatable;
 
-public class CharacterActor extends Actor implements Updatable {
+public class CharacterActor implements Updatable {
 
 	final HashMap<String, Item> items = new HashMap<String, Item>();
 	String name;
 	Kind kind;
 	protected Location location;
+	boolean alive = true;
 
+	public boolean isAlive() {
+		return alive;
+	}
+	
 	public String getJSONState() {
 		String toReturn = "'" + name + "': {";
 		
@@ -37,7 +42,7 @@ public class CharacterActor extends Actor implements Updatable {
 	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
-	@Override
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -51,7 +56,7 @@ public class CharacterActor extends Actor implements Updatable {
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
-	@Override
+	
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
