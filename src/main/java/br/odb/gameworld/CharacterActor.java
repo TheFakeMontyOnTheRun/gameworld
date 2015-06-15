@@ -15,6 +15,10 @@ public class CharacterActor implements Updatable {
 	protected Location location;
 	boolean alive = true;
 
+	public void setIsAlive( boolean alive ) {
+		this.alive = alive;
+	}
+	
 	public boolean isAlive() {
 		return alive;
 	}

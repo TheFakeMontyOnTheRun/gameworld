@@ -5,6 +5,7 @@ package br.odb.gameworld;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import br.odb.gameworld.exceptions.InvalidSlotException;
 import br.odb.gameworld.exceptions.InventoryManipulationException;
@@ -34,7 +35,7 @@ public class Location implements Updatable {
 	final String name;
 	protected Location[] connections;
 	private String description;
-	final ArrayList<CharacterActor> characters = new ArrayList<CharacterActor>();
+	public final List<CharacterActor> characters = new ArrayList<CharacterActor>();
 	public boolean hasBeenExplored;
 	private String floorId;
 	public String ambientSound;
