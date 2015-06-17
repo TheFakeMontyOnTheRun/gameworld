@@ -88,7 +88,7 @@ public class Place extends Level implements Updatable {
 
 	Location addLocation(String name, Location location) {
 		locations.put(name, location);
-		location.place = this;
+		location.setPlace( this );
 		return location;
 	}
 
@@ -202,33 +202,33 @@ public class Place extends Level implements Updatable {
 		} else {
 
 			for (Location l : locations.values()) {
-				if (l != null && !other.locations.containsKey(l.name)) {
+				if (l != null && !other.locations.containsKey(l.getName())) {
 					return false;
 				}
 			}
 
 			for (Location l : other.locations.values()) {
-				if (!locations.containsKey(l.name)) {
+				if (!locations.containsKey(l.getName())) {
 					return false;
 				}
 			}
 
 			for (Location l : locations.values()) {
-				for (Location o : l.connections) {
+				for (Location o : l.getConnections()) {
 					if (o != null) {
 
 						ArrayList<String> others = new ArrayList<String>();
 
 						try {
-							for (Location l2 : other.getLocation(l.name).connections) {
+							for (Location l2 : other.getLocation(l.getName()).getConnections()) {
 								if (l2 != null) {
-									others.add(l2.name);
+									others.add(l2.getName());
 								}
 							}
 						} catch (InvalidLocationException impossible){ 
 						}
 
-						if (!others.contains(o.name)) {
+						if (!others.contains(o.getName())) {
 
 							return false;
 						}

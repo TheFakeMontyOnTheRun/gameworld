@@ -5,6 +5,7 @@ package br.odb.gameworld;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import br.odb.gameworld.exceptions.InvalidSlotException;
@@ -26,19 +27,19 @@ public class Location implements Updatable {
 		material = new String[6];
 	}
 
-	String[] material = new String[Direction.values().length];
-	boolean magnetic;
-	int lightning;
-	public Place place;
-	protected final Door[] door = new Door[Direction.values().length];
-	ArrayList<Item> items = new ArrayList<Item>();
-	final String name;
-	protected Location[] connections;
+	private String[] material = new String[Direction.values().length];
+	private boolean magnetic;
+	private int lightning;
+	private Place place;
+	private final Door[] door = new Door[Direction.values().length];
+	private ArrayList<Item> items = new ArrayList<Item>();
+	private final String name;
+	private Location[] connections;
 	private String description;
-	public final List<CharacterActor> characters = new ArrayList<CharacterActor>();
-	public boolean hasBeenExplored;
+	private final List<CharacterActor> characters = new ArrayList<CharacterActor>();
+	private boolean hasBeenExplored;
 	private String floorId;
-	public String ambientSound;
+	private String ambientSound;
 
 	public String getJSONState() {
 		StringBuilder sb = new StringBuilder();
@@ -421,5 +422,22 @@ public class Location implements Updatable {
 	public Location setFloorId(String floorId) {
 		this.floorId = floorId;
 		return this;
+	}
+
+
+	public void setPlace(Place place) {
+		this.place = place;		
+	}
+	
+	public boolean getHasBeenExplored() {
+		return hasBeenExplored;
+	}
+	
+	public Door[] getDoors() {
+		return door;
+	}
+	
+	public Collection<CharacterActor> getCharacters() {
+		return characters;
 	}
 }
