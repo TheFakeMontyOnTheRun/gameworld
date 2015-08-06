@@ -423,7 +423,10 @@ public class Location implements Updatable {
 		this.floorId = floorId;
 		return this;
 	}
-
+	
+	public Place getPlace() {
+		return place;
+	}
 
 	public void setPlace(Place place) {
 		this.place = place;		
