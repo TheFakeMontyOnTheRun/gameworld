@@ -8,14 +8,14 @@ import br.odb.gameworld.exceptions.InvalidCharacterHandlingException;
 import br.odb.gameworld.exceptions.InvalidLocationException;
 import br.odb.gameworld.exceptions.InvalidSlotException;
 import br.odb.gameworld.exceptions.ItemNotFoundException;
-import br.odb.utils.ScheduledEvent;
 import br.odb.gameutils.Direction;
+//import br.odb.utils.ScheduledEvent;
 
 public class Place extends Level implements Updatable {
 
 	final private HashMap<String, Location> locations;
 	final private HashMap<String, CharacterActor> characters;
-	private ArrayList<ScheduledEvent> scheduledEvents = new ArrayList<ScheduledEvent>();
+//	private ArrayList<ScheduledEvent> scheduledEvents = new ArrayList<ScheduledEvent>();
 
 	public Place() {
 		locations = new HashMap<String, Location>();
@@ -148,16 +148,16 @@ public class Place extends Level implements Updatable {
 			l.update(milisseconds);
 		}
 
-		for (ScheduledEvent se : scheduledEvents) {
-
-			se.timeToGoOff -= milisseconds;
-
-			if (se.timeToGoOff <= 0) {
-
-				scheduledEvents.remove(se);
-				se.run();
-			}
-		}
+//		for (ScheduledEvent se : scheduledEvents) {
+//
+//			se.timeToGoOff -= milisseconds;
+//
+//			if (se.timeToGoOff <= 0) {
+//
+//				scheduledEvents.remove(se);
+//				se.run();
+//			}
+//		}
 	}
 
 	/*
