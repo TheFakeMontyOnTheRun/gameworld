@@ -1,3 +1,16 @@
+/.idea/.name
+/.idea/compiler.xml
+/.idea/copyright/profiles_settings.xml
+/.idea/encodings.xml
+/.idea/libraries/Maven__br_odb_gameutils_1_0_SNAPSHOT.xml
+/.idea/libraries/Maven__junit_junit_4_10.xml
+/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_1.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
+/gameworld.iml
 *.class
 
 # Mobile Tools for Java (J2ME)
