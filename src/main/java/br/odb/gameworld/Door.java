@@ -1,7 +1,6 @@
 package br.odb.gameworld;
 
 import br.odb.gameworld.exceptions.DoorActionException;
-import br.odb.utils.Updatable;
 
 public class Door implements Updatable {
 

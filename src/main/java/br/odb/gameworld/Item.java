@@ -1,7 +1,6 @@
 package br.odb.gameworld;
 
 import br.odb.gameworld.exceptions.ItemActionNotSupportedException;
-import br.odb.utils.Updatable;
 
 public class Item implements Updatable {
 

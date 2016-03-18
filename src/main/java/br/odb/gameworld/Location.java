@@ -13,7 +13,6 @@ import br.odb.gameworld.exceptions.InventoryManipulationException;
 import br.odb.gameworld.exceptions.ItemActionNotSupportedException;
 import br.odb.gameworld.exceptions.ItemNotFoundException;
 import br.odb.utils.Direction;
-import br.odb.utils.Updatable;
 
 /**
  * @author monty

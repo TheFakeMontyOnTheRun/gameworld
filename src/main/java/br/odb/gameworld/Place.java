@@ -9,7 +9,6 @@ import br.odb.gameworld.exceptions.InvalidLocationException;
 import br.odb.gameworld.exceptions.InvalidSlotException;
 import br.odb.gameworld.exceptions.ItemNotFoundException;
 import br.odb.utils.Direction;
-import br.odb.utils.Updatable;
 import br.odb.utils.ScheduledEvent;
 
 public class Place extends Level implements Updatable {

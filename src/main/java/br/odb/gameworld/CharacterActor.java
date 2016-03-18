@@ -5,7 +5,6 @@ import java.util.HashMap;
 import br.odb.gameworld.exceptions.InventoryManipulationException;
 import br.odb.gameworld.exceptions.ItemActionNotSupportedException;
 import br.odb.gameworld.exceptions.ItemNotFoundException;
-import br.odb.utils.Updatable;
 
 public class CharacterActor implements Updatable {
 
