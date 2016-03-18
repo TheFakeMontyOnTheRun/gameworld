@@ -1,6 +1,6 @@
 package br.odb.gameworld;
 
-import br.odb.utils.math.Vec3;
+import br.odb.gameutils.math.Vec3;
 
 public interface GameAudioListener {
 
