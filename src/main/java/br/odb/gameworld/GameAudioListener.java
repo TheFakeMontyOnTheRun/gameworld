@@ -7,5 +7,4 @@ public interface GameAudioListener {
 	public Vec3 getPosition();
 
 	public Vec3 getDirectionVector();
-
 }

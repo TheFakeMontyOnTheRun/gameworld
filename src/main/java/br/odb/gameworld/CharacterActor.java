@@ -14,38 +14,14 @@ public class CharacterActor implements Updatable {
 	protected Location location;
 	boolean alive = true;
 
-	public void setIsAlive( boolean alive ) {
+	public void setIsAlive(boolean alive) {
 		this.alive = alive;
 	}
-	
+
 	public boolean isAlive() {
 		return alive;
 	}
-	
-	public String getJSONState() {
-		String toReturn = "'" + name + "': {";
-		
-		if ( items.size() > 0 ) {
-			
-			toReturn += "'items': [ ";
-			
-			for ( Item i : items.values() ) {
-				toReturn += i + ",";
-			}
-			toReturn += " ] ";
-		}
-		
-		toReturn += kind.getJSONState();
-		toReturn += "}";
-		return toReturn;
-	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -54,12 +30,6 @@ public class CharacterActor implements Updatable {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
@@ -142,17 +112,15 @@ public class CharacterActor implements Updatable {
 
 		return sum;
 	}
-	
-	public void addItem( Item item ) throws InventoryManipulationException {
-		addItem( item.getName(), item );
+
+	public void addItem(Item item) throws InventoryManipulationException {
+		addItem(item.getName(), item);
 	}
 
-
-	public void addItem(String name, Item item)
-			throws InventoryManipulationException {
+	public void addItem(String name, Item item) throws InventoryManipulationException {
 
 		if (items.containsKey(name)) {
-			throw new InventoryManipulationException( "GENERAL ERROR@CharacterActor.addItem()");
+			throw new InventoryManipulationException();
 		}
 
 		item.carrier = this;
@@ -167,35 +135,33 @@ public class CharacterActor implements Updatable {
 		return true;
 	}
 
-	public ActiveItem toggleItem(String name) throws ItemActionNotSupportedException,
-			ItemNotFoundException {
+	public ActiveItem toggleItem(String name) throws ItemActionNotSupportedException, ItemNotFoundException {
 
 		Item item = getItem(name);
 
 		if (!(item instanceof ActiveItem)) {
-			throw new ItemActionNotSupportedException( Item.TOGGLE_DENIAL_MESSAGE );
+			throw new ItemActionNotSupportedException();
 		}
 
 		((ActiveItem) item).toggle();
-		
-		return (ActiveItem) item; 
+
+		return (ActiveItem) item;
 	}
 
 	public Item useItem(String entry) throws ItemNotFoundException, ItemActionNotSupportedException {
 
 		Item item = getItem(entry);
-		
+
 		item.use(this);
 
 		if (item.isDepleted()) {
 			removeItem(item);
 		}
-		
+
 		return item;
 	}
 
 	public boolean hasItem(String name) {
 		return items.containsKey(name);
 	}
-
 }

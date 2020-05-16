@@ -3,17 +3,14 @@ package br.odb.gameworld;
 public class ActiveItem extends Item {
 
 	boolean active;
-	
+
 	public String getTurnOnSound() {
 		return "click";
 	}
-	
+
 	public String getTurnOffSound() {
 		return "click";
 	}
-	
-
-	
 
 	protected ActiveItem(String name) {
 		super(name);

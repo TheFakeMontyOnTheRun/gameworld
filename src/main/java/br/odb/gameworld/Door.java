@@ -6,14 +6,6 @@ public class Door implements Updatable {
 
 	int timeoutForClosing;
 	boolean open;
-	
-	public String getJSONState() {
-		String toReturn = "'door' : {";
-		toReturn += "'timeoutForClosing': '" + timeoutForClosing;
-		toReturn += "','open': '" + open;
-		toReturn += "'}";
-		return toReturn;
-	}
 
 	public boolean isOpen() {
 		return open;
@@ -43,8 +35,5 @@ public class Door implements Updatable {
 
 	@Override
 	public void update(long milisseconds) {
-		//TODO check for the idea of implementing the auto-closing mechanism here
 	}
-
-	
 }

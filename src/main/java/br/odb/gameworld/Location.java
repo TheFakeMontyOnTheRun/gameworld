@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.odb.gameworld;
 
 import java.util.ArrayList;
@@ -14,10 +11,6 @@ import br.odb.gameworld.exceptions.ItemActionNotSupportedException;
 import br.odb.gameworld.exceptions.ItemNotFoundException;
 import br.odb.gameutils.Direction;
 
-/**
- * @author monty
- * 
- */
 public class Location implements Updatable {
 
 	public Location(String name) {
@@ -40,86 +33,11 @@ public class Location implements Updatable {
 	private String floorId;
 	private String ambientSound;
 
-	public String getJSONState() {
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append( "'" );
-		sb.append( name );
-		sb.append( "': {" );
-		
-		
-		if ( items.size() > 0 ) {
-			
-			sb.append( "'items': [ ");
-			
-			for ( Item i : items ) {
-				
-				sb.append( i.getJSONState() );
-			}
-			sb.append( "]," );
-		}
-		
-		
-		sb.append( "'connections': [" );
-
-		for ( Direction d : Direction.values() ) {
-			
-			if ( connections[ d.ordinal() ] != null ) {
-				
-			
-				sb.append( "'" );
-				sb.append( d.simpleName );
-				sb.append( "':{" );
-				sb.append( door[ d.ordinal() ].getJSONState() );
-				sb.append( ", 'link':'" );
-				sb.append( connections[ d.ordinal() ].getName() );
-				sb.append( "'}," );
-			}
-		}
-		
-		sb.append( "]," );
-		
-		if ( characters.size() > 0 ) {
-			sb.append( "'characters': [" );
-			for ( CharacterActor ca : characters ) {
-				sb.append( ca.getJSONState() );
-				sb.append( "," );
-			}
-			sb.append( "]," );
-		}
-		
-		
-		sb.append( "'description': '" );
-		sb.append( description );
-		sb.append( "'," );
-		
-		sb.append( "'lightning': '" );
-		sb.append( lightning );
-		sb.append( "'," );
-		
-		sb.append( "'hasBeenExplored': '" );
-		sb.append( hasBeenExplored );
-		sb.append( "'," );
-		
-		sb.append( "'floorId': '" );
-		sb.append( floorId );
-		sb.append( "'," );
-		
-		sb.append( "'ambientSound': '" );
-		sb.append( ambientSound );
-		sb.append( "'" );
-		
-		sb.append( "}" );
-		return sb.toString();
-	}
-	
-	
 	@Override
 	public void update(long milisseconds) {
 
 		for (Door d : door) {
 			if (d != null) {
-
 				d.update(milisseconds);
 			}
 		}
@@ -146,8 +64,7 @@ public class Location implements Updatable {
 
 		collectables.append("\n");
 		for (Item i : this.items) {
-			
-			//This is getting ugly...but does make some sense in the bigger picture. Plasma pellets move too fast.
+
 			if (i.location != this) {
 				continue;
 			}
@@ -160,8 +77,7 @@ public class Location implements Updatable {
 		connections.append("\n");
 		for (Direction d : Direction.values()) {
 			if (this.connections[d.ordinal()] != null) {
-				connections.append(d + " : "
-						+ this.connections[d.ordinal()].getName());
+				connections.append(d + " : " + this.connections[d.ordinal()].getName());
 				connections.append(". \n");
 			}
 		}
@@ -172,7 +88,7 @@ public class Location implements Updatable {
 	public Location setCollectables(Item[] collectableItems) {
 
 		for (Item i : collectableItems) {
-			addItem( i );
+			addItem(i);
 		}
 
 		return this;
@@ -191,17 +107,11 @@ public class Location implements Updatable {
 		return description;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + Arrays.hashCode(door);
 		result = prime * result + (magnetic ? 1231 : 1237);
 		result = prime * result + Arrays.hashCode(material);
@@ -209,11 +119,6 @@ public class Location implements Updatable {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -262,8 +167,7 @@ public class Location implements Updatable {
 		return true;
 	}
 
-	public Direction getConnectionDirectionForLocation(Location location)
-			throws InvalidSlotException {
+	public Direction getConnectionDirectionForLocation(Location location) throws InvalidSlotException {
 
 		if (location == null) {
 			throw new InvalidSlotException();
@@ -377,12 +281,11 @@ public class Location implements Updatable {
 	}
 
 	public Item giveItemTo(String itemName, CharacterActor c)
-			throws InventoryManipulationException, ItemNotFoundException,
-			ItemActionNotSupportedException {
+			throws InventoryManipulationException, ItemNotFoundException, ItemActionNotSupportedException {
 		Item item = getItem(itemName);
 
 		if (!item.isPickable()) {
-			throw new ItemActionNotSupportedException(Item.PICK_DENIAL_MESSAGE);
+			throw new ItemActionNotSupportedException();
 		}
 
 		c.addItem(item.getName(), item);
@@ -391,8 +294,7 @@ public class Location implements Updatable {
 		return item;
 	}
 
-	public Item takeItemFrom(String itemName, CharacterActor c)
-			throws ItemNotFoundException {
+	public Item takeItemFrom(String itemName, CharacterActor c) throws ItemNotFoundException {
 		Item item = c.getItem(itemName);
 		c.removeItem(item);
 		c.getLocation().addItem(item);
@@ -422,23 +324,23 @@ public class Location implements Updatable {
 		this.floorId = floorId;
 		return this;
 	}
-	
+
 	public Place getPlace() {
 		return place;
 	}
 
 	public void setPlace(Place place) {
-		this.place = place;		
+		this.place = place;
 	}
-	
+
 	public boolean getHasBeenExplored() {
 		return hasBeenExplored;
 	}
-	
+
 	public Door[] getDoors() {
 		return door;
 	}
-	
+
 	public Collection<CharacterActor> getCharacters() {
 		return characters;
 	}

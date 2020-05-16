@@ -9,33 +9,16 @@ import br.odb.gameworld.exceptions.InvalidLocationException;
 import br.odb.gameworld.exceptions.InvalidSlotException;
 import br.odb.gameworld.exceptions.ItemNotFoundException;
 import br.odb.gameutils.Direction;
-//import br.odb.utils.ScheduledEvent;
 
-public class Place extends Level implements Updatable {
+public class Place implements Updatable {
 
 	final private HashMap<String, Location> locations;
 	final private HashMap<String, CharacterActor> characters;
-//	private ArrayList<ScheduledEvent> scheduledEvents = new ArrayList<ScheduledEvent>();
 
 	public Place() {
+		
 		locations = new HashMap<String, Location>();
 		characters = new HashMap<String, CharacterActor>();
-
-	}
-
-	public String getJSONState() {
-		
-		String toReturn = "{";
-		
-		toReturn += "'locations':[";
-		
-		for ( Location l : locations.values() ) {
-			toReturn += l.getJSONState() + ",";
-		}
-		
-		toReturn += "]}";
-		
-		return toReturn;
 	}
 	
 	public Location[] getLocations() {
@@ -62,7 +45,7 @@ public class Place extends Level implements Updatable {
 		CharacterActor character = getCharacter(charName);
 
 		if (!character.isMovable()) {
-			throw new CharacterIsNotMovableException( "As you try to move, you only float up and down. Perhaps you need some special boots?" );
+			throw new CharacterIsNotMovableException();
 		}
 
 		Location origin = character.getLocation();
@@ -147,24 +130,8 @@ public class Place extends Level implements Updatable {
 		for (Location l : locations.values()) {
 			l.update(milisseconds);
 		}
-
-//		for (ScheduledEvent se : scheduledEvents) {
-//
-//			se.timeToGoOff -= milisseconds;
-//
-//			if (se.timeToGoOff <= 0) {
-//
-//				scheduledEvents.remove(se);
-//				se.run();
-//			}
-//		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -176,11 +143,6 @@ public class Place extends Level implements Updatable {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -235,14 +197,6 @@ public class Place extends Level implements Updatable {
 				}
 			}
 		}
-
-		// for (Item i : this.getItems()) {
-		// try {
-		// other.getItem(i.name);
-		// } catch (ItemNotFoundException e) {
-		// return false;
-		// }
-		// }
 
 		return true;
 	}

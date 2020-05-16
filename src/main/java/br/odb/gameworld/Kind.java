@@ -6,8 +6,4 @@ public class Kind {
 	public Kind(String name) {
 		this.name = name;
 	}
-
-	public String getJSONState() {
-		return "'kind': '" + name + "'";
-	}
 }
