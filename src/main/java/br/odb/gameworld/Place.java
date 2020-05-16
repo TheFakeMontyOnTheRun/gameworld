@@ -3,6 +3,7 @@ package br.odb.gameworld;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import br.odb.gameworld.exceptions.CharacterIsNotMovableException;
 import br.odb.gameworld.exceptions.DoorActionException;
 import br.odb.gameworld.exceptions.InvalidCharacterHandlingException;
 import br.odb.gameworld.exceptions.InvalidLocationException;

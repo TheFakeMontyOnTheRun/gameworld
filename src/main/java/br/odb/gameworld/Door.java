@@ -21,7 +21,6 @@ public class Door implements Updatable {
 
 	public Door() {
 		open = false;
-
 	}
 
 	public boolean willOpenFor(CharacterActor character) {

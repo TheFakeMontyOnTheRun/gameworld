@@ -61,7 +61,6 @@ public class Item implements Updatable {
 	}
 
 	public void use(CharacterActor user) throws ItemActionNotSupportedException {
-
 	}
 
 	public boolean isDepleted() {

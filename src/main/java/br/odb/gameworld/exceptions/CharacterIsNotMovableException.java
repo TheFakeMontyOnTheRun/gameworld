@@ -1,4 +1,4 @@
-package br.odb.gameworld;
+package br.odb.gameworld.exceptions;
 
 public class CharacterIsNotMovableException extends Exception {
 
