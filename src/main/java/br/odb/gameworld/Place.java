@@ -9,7 +9,6 @@ import br.odb.gameworld.exceptions.InvalidCharacterHandlingException;
 import br.odb.gameworld.exceptions.InvalidLocationException;
 import br.odb.gameworld.exceptions.InvalidSlotException;
 import br.odb.gameworld.exceptions.ItemNotFoundException;
-import br.odb.gameutils.Direction;
 
 public class Place implements Updatable {
 
@@ -71,7 +70,6 @@ public class Place implements Updatable {
 
 	Location addLocation(String name, Location location) {
 		locations.put(name, location);
-		location.setPlace( this );
 		return location;
 	}
 
@@ -220,5 +218,12 @@ public class Place implements Updatable {
 			}
 		}
 		throw new ItemNotFoundException();
+	}
+
+	public void makeConnection(Location place1, Direction d, Location place2) {
+		
+		place1.setConnected(d, place2);
+		place2.setConnected( Direction.getOppositeDirection(d), place1);
+		
 	}
 }
